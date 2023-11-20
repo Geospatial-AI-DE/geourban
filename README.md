@@ -1,4 +1,4 @@
-# geourban
+# Geospatial Urban API Service
 Direct access to simulated spatially enabled traffic grids of urban regions. This modern Python module represents an idiomatic client accessing the [Geospatial Urban API](https://geospatial-ai.de/?rara-portfolio=geospatial-urban-api-service) being hosted on [Rapid API](https://rapidapi.com/gisfromscratch/api/geourban).
 
 ## Why is it important?
