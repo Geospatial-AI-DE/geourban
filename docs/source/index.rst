@@ -15,9 +15,6 @@ Next steps
 ----------
 Please, check out the `RapidAPI Account Creation and Management Guide <https://docs.rapidapi.com/docs/account-creation-and-settings>`__.
 
-Start with the :doc:`usage` section for further information, including
-how to :ref:`installation` the Python module.
-
 .. note::
 
    This project is under active development.
