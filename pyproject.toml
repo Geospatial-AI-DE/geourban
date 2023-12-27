@@ -8,7 +8,7 @@ version = '0.1a'
 description = 'Direct access to simulated spatially enabled traffic grids of urban regions.'
 readme = 'README.md'
 requires-python = '>=3.7'
-keywords = ['geospatial', 'intelligence', 'urban'. 'digital twin']
+keywords = ['geospatial', 'intelligence', 'urban', 'digital twin']
 classifiers = [
     'Programming Language :: Python :: 3',
     'License :: OSI Approved :: Apache Software License',
