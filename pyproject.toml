@@ -14,7 +14,7 @@ classifiers = [
     'License :: OSI Approved :: Apache Software License',
     'Operating System :: OS Independent',
 ]
-dependencies = ['requests']
+dependencies = ['georapid']
 
 [project.urls]
 'Homepage' = 'https://geospatial-ai.de'
