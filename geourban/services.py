@@ -1,7 +1,10 @@
 # author: Jan Tschada
 # SPDX-License-Identifer: Apache-2.0
 
+from datetime import date
 from georapid.client import GeoRapidClient
+from geourban.formats import OutFormat
+from geourban.types import GridType, VehicleType
 import requests
 
 
@@ -12,8 +15,23 @@ def simulations(client: GeoRapidClient):
     The client instance must refer to a valid geourban services host like 'geourban.p.rapidapi.com'.
     """
     endpoint = '{0}/simulations'.format(client.url)
+    response = requests.request('GET', endpoint, headers=client.auth_headers)
+    response.raise_for_status()
+
+    return response.json()
+
+def top(client: GeoRapidClient, region_code: str, simulation_date: date, vehicle_type: VehicleType, grid_type: GridType, limit: int=10, out_format: OutFormat=OutFormat.GEOJSON):
+    """
+    Returns the top most accumulated traffic grid cells for an urban region.
+    """
+    endpoint = '{0}/top'.format(client.url)
     params = {
-        'format': str(format)
+        'region': region_code,
+        'date': simulation_date.strftime('%Y-%m-%d'),
+        'vehicle': str(vehicle_type),
+        'grid': str(grid_type),
+        'limit': limit,
+        'format': str(out_format)
     }
     response = requests.request('GET', endpoint, headers=client.auth_headers, params=params)
     response.raise_for_status()
