@@ -35,19 +35,23 @@ def query(client: GeoRapidClient, simulation_datetime: datetime, vehicle_type: V
     :type client: :class:`georapid.client.GeoRapidClient`
     :param simulation_datetime: The datetime of the simulation.
     :type simulation_datetime: :class:`datetime.datetime`
-    
-    vehicle_type (VehicleType): The type of vehicle to query.
-    latitude (float): The latitude of the location to query.
-    longitude (float): The longitude of the location to query.
-    seconds (int, optional): The time frame in seconds. Defaults to 60.
-    meters (float, optional): The radius in meters. Defaults to 500.
-    out_format (OutFormat, optional): The output format. Defaults to OutFormat.GEOJSON.
+    :param vehicle_type: The type of vehicle to query.
+    :type vehicle_type: :class:`geourban.types.VehicleType`
+    :param latitude: The latitude of the location to query.
+    :type latitude: float
+    :param longitude: The longitude of the location to query.
+    :type longitude: float
+    :param seconds: The time frame in seconds. Defaults to 60.
+    :type seconds: int, optional
+    :param meters: The radius in meters. Defaults to 500.
+    :type meters: float, optional
+    :param out_format: The output format. Defaults to OutFormat.GEOJSON.
+    :type out_format: :class:`geourban.formats.OutFormat`, optional
 
-    Raises:
-    ValueError: If latitude is not in the range of [-90.0, 90.0].
-    ValueError: If longitude is not in the range of [-180.0, 180.0].
-    ValueError: If seconds is not in the range of [1, 120].
-    ValueError: If meters is not in the range of [1.0, 1000.0].
+    :raises ValueError: If latitude is not in the range of [-90.0, 90.0].
+    :raises ValueError: If longitude is not in the range of [-180.0, 180.0].
+    :raises ValueError: If seconds is not in the range of [1, 120].
+    :raises ValueError: If meters is not in the range of [1.0, 1000.0].
 
     :return: The JSON response from the geourban service.
     :rtype: :class:`dict`
