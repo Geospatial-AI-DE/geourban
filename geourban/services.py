@@ -26,6 +26,39 @@ def aggregate(client: GeoRapidClient, region_code: str, simulation_datetime: dat
 
     return response.json()
 
+def query(client: GeoRapidClient, simulation_datetime: datetime, vehicle_type: VehicleType, latitude: float, longitude: float, seconds: int=60, meters: float=500, out_format: OutFormat=OutFormat.GEOJSON):
+    """
+    Queries the simulated agent positions in space and time.
+    Returns all positions within a certain radius of a given location and within a certain time frame.
+    """
+
+    if latitude < -90.0 or 90.0 < latitude:
+        raise ValueError(f'Invalid latitude value! {latitude} is not in the range of [-90.0, 90.0].')
+    
+    if longitude < -180.0 or 180.0 < longitude:
+        raise ValueError(f'Invalid longitude value! {longitude} is not in the range of [-180.0, 180.0].')
+    
+    if seconds < 1 or 600 < seconds:
+        raise ValueError(f'Invalid seconds value! {seconds} is not in the range of [1, 600].')
+    
+    if meters < 1.0 or 1000.0 < seconds:
+        raise ValueError(f'Invalid meters value! {meters} is not in the range of [1.0, 1000.0].')
+
+    endpoint = '{0}/query'.format(client.url)
+    params = {
+        'datetime': simulation_datetime.isoformat(),
+        'seconds': seconds,
+        'vehicle': str(vehicle_type),
+        'lat': latitude,
+        'lon': longitude,
+        'meters': meters,
+        'format': str(out_format)
+    }
+    response = requests.request('GET', endpoint, headers=client.auth_headers, params=params)
+    response.raise_for_status()
+
+    return response.json()
+
 def simulations(client: GeoRapidClient):
     """
     Returns all the available simulations using the urban region and the simulation date.
