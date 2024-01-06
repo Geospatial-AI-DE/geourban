@@ -57,13 +57,16 @@ def query(client: GeoRapidClient, simulation_datetime: datetime, vehicle_type: V
     :rtype: :class:`dict`
 
     Example:
-    >>> host = 'geourban.p.rapidapi.com'
-    >>> client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
-    >>> simulation_datetime: datetime = datetime(2023, 8, 24, 8, 45, 0)
-    >>> vehicle_type: VehicleType = VehicleType.CAR
-    >>> (latitude, longitude) = (50.746708, 7.074405)
-    >>> (seconds, meters) = (120, 1000)
-    >>> agent_positions = query(client, simulation_datetime, vehicle_type, latitude, longitude, seconds, meters)
+    .. code-block:: python
+    
+        host = 'geourban.p.rapidapi.com'
+        client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        simulation_datetime: datetime = datetime(2023, 8, 24, 8, 45, 0)
+        vehicle_type: VehicleType = VehicleType.CAR
+        (latitude, longitude) = (50.746708, 7.074405)
+        (seconds, meters) = (120, 1000)
+        agent_positions = query(client, simulation_datetime, vehicle_type, latitude, longitude, seconds, meters)
+    
     """
 
     if latitude < -90.0 or 90.0 < latitude:
