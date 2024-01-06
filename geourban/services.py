@@ -1,13 +1,30 @@
 # author: Jan Tschada
 # SPDX-License-Identifer: Apache-2.0
 
-from datetime import date
+from datetime import date, datetime
 from georapid.client import GeoRapidClient
 from geourban.formats import OutFormat
 from geourban.types import GridType, VehicleType
 import requests
 
 
+
+def aggregate(client: GeoRapidClient, region_code: str, simulation_datetime: datetime, vehicle_type: VehicleType, grid_type: GridType, out_format: OutFormat=OutFormat.GEOJSON):
+    """
+    Returns a spatially enabled traffic grid representing aggregated simulated movements of pedestrians, bikes and cars.
+    """
+    endpoint = '{0}/aggregate'.format(client.url)
+    params = {
+        'region': region_code,
+        'time': simulation_datetime.isoformat(),
+        'vehicle': str(vehicle_type),
+        'grid': str(grid_type),
+        'format': str(out_format)
+    }
+    response = requests.request('GET', endpoint, headers=client.auth_headers, params=params)
+    response.raise_for_status()
+
+    return response.json()
 
 def simulations(client: GeoRapidClient):
     """
