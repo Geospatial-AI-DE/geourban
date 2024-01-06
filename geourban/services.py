@@ -30,6 +30,25 @@ def query(client: GeoRapidClient, simulation_datetime: datetime, vehicle_type: V
     """
     Queries the simulated agent positions in space and time.
     Returns all positions within a certain radius of a given location and within a certain time frame.
+
+    Parameters:
+    client (GeoRapidClient): The client to use for the query.
+    simulation_datetime (datetime): The datetime of the simulation.
+    vehicle_type (VehicleType): The type of vehicle to query.
+    latitude (float): The latitude of the location to query.
+    longitude (float): The longitude of the location to query.
+    seconds (int, optional): The time frame in seconds. Defaults to 60.
+    meters (float, optional): The radius in meters. Defaults to 500.
+    out_format (OutFormat, optional): The output format. Defaults to OutFormat.GEOJSON.
+
+    Raises:
+    ValueError: If latitude is not in the range of [-90.0, 90.0].
+    ValueError: If longitude is not in the range of [-180.0, 180.0].
+    ValueError: If seconds is not in the range of [1, 120].
+    ValueError: If meters is not in the range of [1.0, 1000.0].
+
+    Returns:
+    The JSON response from the geourban service.
     """
 
     if latitude < -90.0 or 90.0 < latitude:
