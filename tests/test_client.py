@@ -54,9 +54,9 @@ class TestConnect(unittest.TestCase):
         region_code: str = 'DEA22'
         vehicle_type: VehicleType = VehicleType.CAR
         grid_type: GridType = GridType.AGENT
-        top_traffic_grid_cells = aggregate(client, region_code, simulation_datetime, vehicle_type, grid_type)
-        self.assertIsNotNone(top_traffic_grid_cells, "The traffic grid cells must be initialized!")
-        self.assertTrue('features' in top_traffic_grid_cells, "The returned GeoJSON must have features!")
+        aggregated_traffic_grid_cells = aggregate(client, region_code, simulation_datetime, vehicle_type, grid_type)
+        self.assertIsNotNone(aggregated_traffic_grid_cells, "The traffic grid cells must be initialized!")
+        self.assertTrue('features' in aggregated_traffic_grid_cells, "The returned GeoJSON must have features!")
 
     def test_query_hotspot_in_bonn(self):
         host = 'geourban.p.rapidapi.com'

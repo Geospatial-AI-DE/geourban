@@ -12,6 +12,47 @@ import requests
 def aggregate(client: GeoRapidClient, region_code: str, simulation_datetime: datetime, vehicle_type: VehicleType, grid_type: GridType, out_format: OutFormat=OutFormat.GEOJSON):
     """
     Returns a spatially enabled traffic grid representing aggregated simulated movements of pedestrians, bikes and cars.
+
+    :param client: The client instance to use for this query.
+    :type client: :class:`georapid.client.GeoRapidClient`
+    :param region_code: The simulations endpoint returns all available urban regions. 
+        You have to use the region code, e.g. `DEA22` for the city of Bonn, Germany.
+    :type region_code: str
+    :param simulation_datetime: Represents the simulated start time.
+        The simulations endpoint list the available urban regions with their simulation dates. 
+        The time must be defined using the simulation date and the time being on the hour, e.g. `2023-08-24T07:00:00`.
+    :type simulation_datetime: :class:`datetime.datetime`
+    :param vehicle_type: Car, Bike and Pedestrian are possible vehicle types.
+    :type vehicle_type: :class:`geourban.types.VehicleType`
+    :param grid_type: The values agent, speed and emissions are supported grid types.
+        agent: The number of unique agents is calculated.
+        speed: The speed average of every agent is calculated.
+        emissions: The sum of carbon dioxide emissions of every agent is calculated. This makes only sense for vehicle being cars!
+    :type grid_type: :class:`geourban.types.GridType`
+    :param out_format: The output format. Defaults to OutFormat.GEOJSON.
+    :type out_format: :class:`geourban.formats.OutFormat`, optional
+
+    :return: The JSON response from the geourban service.
+    :rtype: :class:`dict`
+
+    Example:
+    
+    .. code-block:: python
+    
+        from datetime import datetime
+        from georapid.client import GeoRapidClient
+        from georapid.factory import EnvironmentClientFactory
+        from geourban.services import aggregate
+        from geourban.types import GridType, VehicleType
+        
+        host = 'geourban.p.rapidapi.com'
+        client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        simulation_datetime: datetime = datetime(2023, 8, 24, 8, 0, 0)
+        region_code: str = 'DEA22'
+        vehicle_type: VehicleType = VehicleType.CAR
+        grid_type: GridType = GridType.AGENT
+        aggregated_traffic_grid_cells = aggregate(client, region_code, simulation_datetime, vehicle_type, grid_type)
+    
     """
     endpoint = '{0}/aggregate'.format(client.url)
     params = {
@@ -35,7 +76,7 @@ def query(client: GeoRapidClient, simulation_datetime: datetime, vehicle_type: V
     :type client: :class:`georapid.client.GeoRapidClient`
     :param simulation_datetime: The datetime of the simulation.
     :type simulation_datetime: :class:`datetime.datetime`
-    :param vehicle_type: The type of vehicle to query.
+    :param vehicle_type: Car, Bike and Pedestrian are possible vehicle types.
     :type vehicle_type: :class:`geourban.types.VehicleType`
     :param latitude: The latitude of the location to query.
     :type latitude: float
@@ -57,10 +98,15 @@ def query(client: GeoRapidClient, simulation_datetime: datetime, vehicle_type: V
     :rtype: :class:`dict`
 
     Example:
-
-    .. highlight:: python
+    
     .. code-block:: python
     
+        from datetime import datetime
+        from georapid.client import GeoRapidClient
+        from georapid.factory import EnvironmentClientFactory
+        from geourban.services import query
+        from geourban.types import VehicleType
+        
         host = 'geourban.p.rapidapi.com'
         client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
         simulation_datetime: datetime = datetime(2023, 8, 24, 8, 45, 0)
@@ -102,7 +148,27 @@ def simulations(client: GeoRapidClient):
     """
     Returns all the available simulations using the urban region and the simulation date.
     The client instance must refer to a valid geourban services host like 'geourban.p.rapidapi.com'.
+
+    :param client: The client instance to use for this query.
+    :type client: :class:`georapid.client.GeoRapidClient`
+
+    :return: The JSON response from the geourban service.
+    :rtype: :class:`list`
+
+    Example:
+    
+    .. code-block:: python
+    
+        from georapid.client import GeoRapidClient
+        from georapid.factory import EnvironmentClientFactory
+        from geourban.services import simulations
+        
+        host = 'geourban.p.rapidapi.com'
+        client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        urban_simulations = simulations(client)
+    
     """
+    
     endpoint = '{0}/simulations'.format(client.url)
     response = requests.request('GET', endpoint, headers=client.auth_headers)
     response.raise_for_status()
@@ -112,6 +178,49 @@ def simulations(client: GeoRapidClient):
 def top(client: GeoRapidClient, region_code: str, simulation_date: date, vehicle_type: VehicleType, grid_type: GridType, limit: int=10, out_format: OutFormat=OutFormat.GEOJSON):
     """
     Returns the top most accumulated traffic grid cells for an urban region.
+
+    :param client: The client instance to use for this query.
+    :type client: :class:`georapid.client.GeoRapidClient`
+    :param region_code: The simulations endpoint returns all available urban regions. 
+        You have to use the region code, e.g. `DEA22` for the city of Bonn, Germany.
+    :type region_code: str
+    :param simulation_date: Represents the simulated date. 
+        The simulations endpoint list the available urban regions with their simulation dates. 
+        The date must be defined using ISO format, e.g. `2023-08-24`.
+    :type simulation_date: :class:`datetime.date`
+    :param vehicle_type: Car, Bike and Pedestrian are possible vehicle types.
+    :type vehicle_type: :class:`geourban.types.VehicleType`
+    :param grid_type: The values agent, speed and emissions are supported grid types.
+        agent: The number of unique agents is calculated.
+        speed: The speed average of every agent is calculated.
+        emissions: The sum of carbon dioxide emissions of every agent is calculated. This makes only sense for vehicle being cars!
+    :type grid_type: :class:`geourban.types.GridType`
+    :param limit: The maximum number of returned features. Defaults to 10.
+    :type limit: int, optional
+    :param out_format: The output format. Defaults to OutFormat.GEOJSON.
+    :type out_format: :class:`geourban.formats.OutFormat`, optional
+
+    :return: The JSON response from the geourban service.
+    :rtype: :class:`dict`
+
+    Example:
+    
+    .. code-block:: python
+    
+        from datetime import date
+        from georapid.client import GeoRapidClient
+        from georapid.factory import EnvironmentClientFactory
+        from geourban.services import top
+        from geourban.types import GridType, VehicleType
+        
+        host = 'geourban.p.rapidapi.com'
+        client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        simulation_date: date = date(2023, 8, 24)
+        region_code: str = 'DEA22'
+        vehicle_type: VehicleType = VehicleType.CAR
+        grid_type: GridType = GridType.AGENT
+        top_traffic_grid_cells = top(client, region_code, simulation_date, vehicle_type, grid_type)
+    
     """
     endpoint = '{0}/top'.format(client.url)
     params = {
