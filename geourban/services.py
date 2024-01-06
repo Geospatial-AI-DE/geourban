@@ -57,6 +57,7 @@ def query(client: GeoRapidClient, simulation_datetime: datetime, vehicle_type: V
     :rtype: :class:`dict`
 
     Example:
+    
     .. code-block:: python
     
         host = 'geourban.p.rapidapi.com'
