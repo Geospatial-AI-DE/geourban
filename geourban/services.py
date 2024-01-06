@@ -38,10 +38,10 @@ def query(client: GeoRapidClient, simulation_datetime: datetime, vehicle_type: V
     if longitude < -180.0 or 180.0 < longitude:
         raise ValueError(f'Invalid longitude value! {longitude} is not in the range of [-180.0, 180.0].')
     
-    if seconds < 1 or 600 < seconds:
-        raise ValueError(f'Invalid seconds value! {seconds} is not in the range of [1, 600].')
+    if seconds < 1 or 120 < seconds:
+        raise ValueError(f'Invalid seconds value! {seconds} is not in the range of [1, 120].')
     
-    if meters < 1.0 or 1000.0 < seconds:
+    if meters < 1.0 or 1000.0 < meters:
         raise ValueError(f'Invalid meters value! {meters} is not in the range of [1.0, 1000.0].')
 
     endpoint = '{0}/query'.format(client.url)
