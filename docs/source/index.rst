@@ -23,3 +23,5 @@ Contents
 --------
 
 .. toctree::
+
+   usage
