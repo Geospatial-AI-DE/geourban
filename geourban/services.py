@@ -35,6 +35,7 @@ def query(client: GeoRapidClient, simulation_datetime: datetime, vehicle_type: V
     :type client: :class:`georapid.client.GeoRapidClient`
     :param simulation_datetime: The datetime of the simulation.
     :type simulation_datetime: :class:`datetime.datetime`
+    
     vehicle_type (VehicleType): The type of vehicle to query.
     latitude (float): The latitude of the location to query.
     longitude (float): The longitude of the location to query.
