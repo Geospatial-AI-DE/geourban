@@ -2,6 +2,9 @@
 requires = ['setuptools', 'setuptools-scm']
 build-backend = 'setuptools.build_meta'
 
+[tool.setuptools.packages.find]
+include = ['geourban']
+
 [project]
 name = 'geourban'
 version = '0.1a'
