@@ -17,7 +17,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
-    #'enum_tools.autoenum',
+    'enum_tools.autoenum',
 ]
 
 # Turn on sphinx.ext.autosummary
