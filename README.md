@@ -1,3 +1,9 @@
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Geospatial-AI-DE/geourban-py)](https://pypi.org/project/geourban)
+![GitHub License](https://img.shields.io/github/license/Geospatial-AI-DE/geourban-py)
+[![Read the Docs](https://img.shields.io/readthedocs/geourban)](https://geourban.readthedocs.io/en/latest)
+[![Tweet Me](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FGeospatial-AI-DE%geourban-py)](https://twitter.com/intent/tweet?text=Outstanding:&url=https%3A%2F%2Fgithub.com%2FGeospatial-AI-DE%geourban-py)
+
+
 # Geospatial Urban API Service
 Direct access to simulated spatially enabled traffic grids of urban regions. This modern Python module represents an idiomatic client accessing the [Geospatial Urban API](https://geospatial-ai.de/?rara-portfolio=geospatial-urban-api-service) being hosted on [Rapid API](https://rapidapi.com/gisfromscratch/api/geourban).
 
