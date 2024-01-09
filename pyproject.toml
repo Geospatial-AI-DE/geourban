@@ -7,7 +7,7 @@ include = ['geourban']
 
 [project]
 name = 'geourban'
-version = '0.1a'
+version = '0.1'
 description = 'Direct access to simulated spatially enabled traffic grids of urban regions.'
 readme = 'README.md'
 requires-python = '>=3.7'
