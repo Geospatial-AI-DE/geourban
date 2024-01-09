@@ -7,6 +7,16 @@
 # Geospatial Urban API Service
 Direct access to simulated spatially enabled traffic grids of urban regions. This modern Python module represents an idiomatic client accessing the [Geospatial Urban API](https://geospatial-ai.de/?rara-portfolio=geospatial-urban-api-service) being hosted on [Rapid API](https://rapidapi.com/gisfromscratch/api/geourban).
 
+
+![](https://geospatial-ai.de/wp-content/uploads/2023/10/Screenshot-2023-10-31-000538-1024x419.png)
+
+*Traffic grid accumulating the number of simulated agents moving using bikes through the city of Bonn between 07:00 and 08:00 AM*
+
+
+![](https://geospatial-ai.de/wp-content/uploads/2024/01/Screenshot-from-2024-01-08-00-47-07.png)
+
+*Simulated agent positions moving by car within a distance of 250 meters of a highway cross road intersection being located at (50.746708, 7.074405) in the city of Bonn starting at 08:00 AM and lasting 30 seconds*
+
 ## Why is it important?
 The geospatial urban API solves a common challenge for urban digital twins – obtaining insights into mobility behavior of citizens using simulated traffic scenarios. Traffic planners use powerful tools in shaping urban mobility sustainable. But without having access to citizen movement profiles there is always a need for simulating, analyzing, testing and mitigating traffic scenarios.
 
