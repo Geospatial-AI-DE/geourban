@@ -25,6 +25,8 @@ Please, check out the [RapidAPI Account Creation and Management Guide](https://d
 
 Start with the [Introduction](https://rapidapi.com/gisfromscratch/api/geourban/details) section for further information.
 
+Follow the [Guides](https://geourban.readthedocs.io/en/latest/guides.html) or take a look at the [Urban Traffic Bonn](https://github.com/Geospatial-AI-DE/geourban-py/blob/main/notebooks/Urban%20Traffic%20Bonn.ipynb) notebook.
+
 ## Ready to use
 The geospatial urban API offer ready-to-use geospatial features representing simulated spatially enabled traffic grids of urban regions. 
 
