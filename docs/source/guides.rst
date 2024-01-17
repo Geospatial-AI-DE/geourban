@@ -135,7 +135,7 @@ Every urban region has an unique region code which is needed for accessing the c
     urban_simulations = simulations(client)
     urban_simulations
 
-.. code-block:: json
+.. code-block:: python
 
     [
         {'region': 'DEA2D', 'name': 'Aachen, Stadt', 'date': '2023-12-10'},
@@ -158,7 +158,7 @@ The returned GeoJSON features represents the grid cells with the highest car thr
     top_traffic_grid_cells = top(client, bonn_region_code, simulation_date, vehicle_type, grid_type, limit=limit)
     top_traffic_grid_cells
 
-.. code-block:: json
+.. code-block:: python
 
     {'type': 'FeatureCollection',
  'features': [{'type': 'Feature',
