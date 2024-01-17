@@ -121,6 +121,10 @@ Connect to ArcGIS Online anonymously and display a map view:
     bonn_map = gis.map('Bonn, Germany', zoomlevel=13)
     bonn_map
 
+.. figure:: https://github.com/Geospatial-AI-DE/geourban-py/assets/921231/5ab65fcb-3aa2-4895-a068-689062d3a725
+
+    Map showing the city of Bonn, Germany
+
 Step 4: List the available simulations
 """"""""""""""""""""""""""""""""""""""
 We need to know the available urban regions and their simulation date. 
@@ -130,6 +134,13 @@ Every urban region has an unique region code which is needed for accessing the c
 
     urban_simulations = simulations(client)
     urban_simulations
+
+.. code-block:: json
+
+    [
+        {'region': 'DEA2D', 'name': 'Aachen, Stadt', 'date': '2023-12-10'},
+        {'region': 'DE111', 'name': 'Stuttgart, Landeshauptstadt, Kreisfreie Stadt',  'date': '2023-11-25'}
+    ]
 
 Step 5: Request the top five accumulated car traffic grid cells
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -147,6 +158,70 @@ The returned GeoJSON features represents the grid cells with the highest car thr
     top_traffic_grid_cells = top(client, bonn_region_code, simulation_date, vehicle_type, grid_type, limit=limit)
     top_traffic_grid_cells
 
+.. code-block:: json
+
+    {'type': 'FeatureCollection',
+ 'features': [{'type': 'Feature',
+   'geometry': {'type': 'Polygon',
+    'coordinates': [[[7.07375, 50.74601],
+      [7.07504, 50.74601],
+      [7.07569, 50.74672],
+      [7.07504, 50.74743],
+      [7.07375, 50.74743],
+      [7.0731, 50.74672],
+      [7.07375, 50.74601]]]},
+   'properties': {'start_time': '2023-08-24T08:00:00',
+    'end_time': '2023-08-24T08:59:59',
+    'agent_count': 439}},
+  {'type': 'Feature',
+   'geometry': {'type': 'Polygon',
+    'coordinates': [[[7.07375, 50.74601],
+      [7.07504, 50.74601],
+      [7.07569, 50.74672],
+      [7.07504, 50.74743],
+      [7.07375, 50.74743],
+      [7.0731, 50.74672],
+      [7.07375, 50.74601]]]},
+   'properties': {'start_time': '2023-08-24T09:00:00',
+    'end_time': '2023-08-24T09:59:59',
+    'agent_count': 427}},
+  {'type': 'Feature',
+   'geometry': {'type': 'Polygon',
+    'coordinates': [[[7.07375, 50.74601],
+      [7.07504, 50.74601],
+      [7.07569, 50.74672],
+      [7.07504, 50.74743],
+      [7.07375, 50.74743],
+      [7.0731, 50.74672],
+      [7.07375, 50.74601]]]},
+   'properties': {'start_time': '2023-08-24T07:00:00',
+    'end_time': '2023-08-24T07:59:59',
+    'agent_count': 422}},
+  {'type': 'Feature',
+   'geometry': {'type': 'Polygon',
+    'coordinates': [[[7.07569, 50.74672],
+      [7.07699, 50.74672],
+      [7.07764, 50.74743],
+      [7.07699, 50.74814],
+      [7.07569, 50.74814],
+      [7.07504, 50.74743],
+      [7.07569, 50.74672]]]},
+   'properties': {'start_time': '2023-08-24T08:00:00',
+    'end_time': '2023-08-24T08:59:59',
+    'agent_count': 421}},
+  {'type': 'Feature',
+   'geometry': {'type': 'Polygon',
+    'coordinates': [[[7.07569, 50.74672],
+      [7.07699, 50.74672],
+      [7.07764, 50.74743],
+      [7.07699, 50.74814],
+      [7.07569, 50.74814],
+      [7.07504, 50.74743],
+      [7.07569, 50.74672]]]},
+   'properties': {'start_time': '2023-08-24T09:00:00',
+    'end_time': '2023-08-24T09:59:59',
+    'agent_count': 408}}]}
+
 Step 6: Convert the returned GeoJSON result into a FeatureSet
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 The FeatureSet offers direct access to a spatially enabled dataframe. 
@@ -158,6 +233,10 @@ We can easily inspect the time frames (`start_time` - `end_time`) and the number
     top_traffic_sdf = top_traffic_fset.sdf
     top_traffic_sdf
 
+.. figure:: https://github.com/Geospatial-AI-DE/geourban-py/assets/921231/70ffcfda-6335-482e-bc45-24cba4dc0cff
+
+    Spatially Enabled Data Frame of aggregated car vehicles
+
 Step 7: Map the traffic grid cells
 """"""""""""""""""""""""""""""""""
 The map widget displays the traffic grid cells as geospatial polygon features.
@@ -166,6 +245,10 @@ The map widget displays the traffic grid cells as geospatial polygon features.
 
     top_traffic_sdf.spatial.plot(bonn_map, renderer_type='s', colors='#E80000', alpha=0.3)
     bonn_map
+
+.. figure:: https://github.com/Geospatial-AI-DE/geourban-py/assets/921231/924f3a1a-9c15-4edc-a1af-67b1b47973bd
+
+    Map showing aggregated car vehicles
 
 Step 8: Query the simulated agents nearby
 """""""""""""""""""""""""""""""""""""""""
@@ -181,6 +264,10 @@ We are using the center of this crossroad intersection, request the simulated ag
     car_positions_sdf = car_positions_fset.sdf
     car_positions_sdf
 
+.. figure:: https://github.com/Geospatial-AI-DE/geourban-py/assets/921231/587519e8-2851-4e76-8c32-26858d0b6ed2
+
+    Spatially Enabled Data Frame of simulated car positions
+
 Step 9: Map the car positions nearby
 """"""""""""""""""""""""""""""""""""
 The map widget displays every simulated agent position as geospatial point features.
@@ -190,6 +277,10 @@ The map widget displays every simulated agent position as geospatial point featu
     bonn_map = gis.map('Bonn, Germay')
     car_positions_sdf.spatial.plot(bonn_map, renderer_type='s', colors='#E80000', marker_size=7, alpha=0.3)
     bonn_map
+
+.. figure:: https://github.com/Geospatial-AI-DE/geourban-py/assets/921231/9ff96ea0-e094-4054-ae98-46368141ad09
+
+    Map showing simulated car positions
 
 Step 10: Accumulate the speed of car traffic between 08:00 and 09:00 AM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -206,12 +297,19 @@ The traffic grid cells represent the accumulated average speed of car vehicles.
     car_speed_sdf = car_speed_fset.sdf
     car_speed_sdf
 
+.. figure:: https://github.com/Geospatial-AI-DE/geourban-py/assets/921231/88037041-39d3-4c73-963c-5737ec684725
+
+    Spatially Enabled Data Frame of average car speed
+
 Step 11: Map the accumulated speed of car traffic
 """""""""""""""""""""""""""""""""""""""""""""""""
 The map widget displays the traffic grid cells as geospatial polygon features.
 
 .. code-block:: python
 
-    car_speed_sdf.spatial.plot(bonn_map, renderer_type='c', method='esriClassifyNaturalBreaks', class_count=5, col='speed_mean', cmap='YlOrRd')
+    car_speed_sdf.spatial.plot(bonn_map, renderer_type='c', method='esriClassifyNaturalBreaks', class_count=5, col='speed_mean', cmap='RdYlGn')
     bonn_map
 
+.. figure:: https://github.com/Geospatial-AI-DE/geourban-py/assets/921231/39741bcc-a805-47a1-b2c5-7b525bd20418
+
+    Map showing average car speed
