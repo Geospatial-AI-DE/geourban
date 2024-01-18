@@ -138,8 +138,91 @@ Every urban region has an unique region code which is needed for accessing the c
 .. code-block:: python
 
     [
-        {'region': 'DEA2D', 'name': 'Aachen, Stadt', 'date': '2023-12-10'},
-        {'region': 'DE111', 'name': 'Stuttgart, Landeshauptstadt, Kreisfreie Stadt',  'date': '2023-11-25'}
+        {
+            "region": "DEA2D",
+            "name": "Aachen, Stadt",
+            "date": "2023-12-10"
+        },
+        {
+            "region": "DE246",
+            "name": "Bayreuth, Landkreis",
+            "date": "2023-12-28"
+        },
+        {
+            "region": "DE300",
+            "name": "Berlin",
+            "date": "2023-08-25"
+        },
+        {
+            "region": "DEA22",
+            "name": "Bonn, Kreisfreie Stadt",
+            "date": "2023-08-24"
+        },
+        {
+            "region": "DEE01",
+            "name": "Dessau-Roßlau, Stadt",
+            "date": "2023-08-24"
+        },
+        {
+            "region": "DED21",
+            "name": "Dresden, Stadt",
+            "date": "2023-12-10"
+        },
+        {
+            "region": "DEA12",
+            "name": "Duisburg, Kreisfreie Stadt",
+            "date": "2023-12-22"
+        },
+        {
+            "region": "DE113",
+            "name": "Esslingen, Landkreis",
+            "date": "2023-12-19"
+        },
+        {
+            "region": "DE712",
+            "name": "Frankfurt am Main, Kreisfreie Stadt",
+            "date": "2023-11-21"
+        },
+        {
+            "region": "DE929",
+            "name": "Hannover, Region",
+            "date": "2023-11-09"
+        },
+        {
+            "region": "DE115",
+            "name": "Ludwigsburg, Landkreis",
+            "date": "2023-12-18"
+        },
+        {
+            "region": "DEA1C",
+            "name": "Mettmann, Kreis",
+            "date": "2023-12-27"
+        },
+        {
+            "region": "DE212",
+            "name": "München, Landeshauptstadt, Kreisfreie Stadt",
+            "date": "2023-11-01"
+        },
+        {
+            "region": "DE228",
+            "name": "Passau, Landkreis",
+            "date": "2023-12-28"
+        },
+        {
+            "region": "DEA2C",
+            "name": "Rhein-Sieg-Kreis",
+            "date": "2023-12-09"
+        },
+        {
+            "region": "DE229",
+            "name": "Schwandorf, Landkreis",
+            "date": "2023-12-28"
+        },
+        {
+            "region": "DE111",
+            "name": "Stuttgart, Landeshauptstadt, Kreisfreie Stadt",
+            "date": "2023-11-25"
+        }
     ]
 
 Step 5: Request the top five accumulated car traffic grid cells
@@ -160,67 +243,226 @@ The returned GeoJSON features represents the grid cells with the highest car thr
 
 .. code-block:: python
 
-    {'type': 'FeatureCollection',
- 'features': [{'type': 'Feature',
-   'geometry': {'type': 'Polygon',
-    'coordinates': [[[7.07375, 50.74601],
-      [7.07504, 50.74601],
-      [7.07569, 50.74672],
-      [7.07504, 50.74743],
-      [7.07375, 50.74743],
-      [7.0731, 50.74672],
-      [7.07375, 50.74601]]]},
-   'properties': {'start_time': '2023-08-24T08:00:00',
-    'end_time': '2023-08-24T08:59:59',
-    'agent_count': 439}},
-  {'type': 'Feature',
-   'geometry': {'type': 'Polygon',
-    'coordinates': [[[7.07375, 50.74601],
-      [7.07504, 50.74601],
-      [7.07569, 50.74672],
-      [7.07504, 50.74743],
-      [7.07375, 50.74743],
-      [7.0731, 50.74672],
-      [7.07375, 50.74601]]]},
-   'properties': {'start_time': '2023-08-24T09:00:00',
-    'end_time': '2023-08-24T09:59:59',
-    'agent_count': 427}},
-  {'type': 'Feature',
-   'geometry': {'type': 'Polygon',
-    'coordinates': [[[7.07375, 50.74601],
-      [7.07504, 50.74601],
-      [7.07569, 50.74672],
-      [7.07504, 50.74743],
-      [7.07375, 50.74743],
-      [7.0731, 50.74672],
-      [7.07375, 50.74601]]]},
-   'properties': {'start_time': '2023-08-24T07:00:00',
-    'end_time': '2023-08-24T07:59:59',
-    'agent_count': 422}},
-  {'type': 'Feature',
-   'geometry': {'type': 'Polygon',
-    'coordinates': [[[7.07569, 50.74672],
-      [7.07699, 50.74672],
-      [7.07764, 50.74743],
-      [7.07699, 50.74814],
-      [7.07569, 50.74814],
-      [7.07504, 50.74743],
-      [7.07569, 50.74672]]]},
-   'properties': {'start_time': '2023-08-24T08:00:00',
-    'end_time': '2023-08-24T08:59:59',
-    'agent_count': 421}},
-  {'type': 'Feature',
-   'geometry': {'type': 'Polygon',
-    'coordinates': [[[7.07569, 50.74672],
-      [7.07699, 50.74672],
-      [7.07764, 50.74743],
-      [7.07699, 50.74814],
-      [7.07569, 50.74814],
-      [7.07504, 50.74743],
-      [7.07569, 50.74672]]]},
-   'properties': {'start_time': '2023-08-24T09:00:00',
-    'end_time': '2023-08-24T09:59:59',
-    'agent_count': 408}}]}
+    {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [
+                        [
+                            [
+                                7.07375,
+                                50.74601
+                            ],
+                            [
+                                7.07504,
+                                50.74601
+                            ],
+                            [
+                                7.07569,
+                                50.74672
+                            ],
+                            [
+                                7.07504,
+                                50.74743
+                            ],
+                            [
+                                7.07375,
+                                50.74743
+                            ],
+                            [
+                                7.0731,
+                                50.74672
+                            ],
+                            [
+                                7.07375,
+                                50.74601
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "start_time": "2023-08-24T08:00:00",
+                    "end_time": "2023-08-24T08:59:59",
+                    "agent_count": 439
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [
+                        [
+                            [
+                                7.07375,
+                                50.74601
+                            ],
+                            [
+                                7.07504,
+                                50.74601
+                            ],
+                            [
+                                7.07569,
+                                50.74672
+                            ],
+                            [
+                                7.07504,
+                                50.74743
+                            ],
+                            [
+                                7.07375,
+                                50.74743
+                            ],
+                            [
+                                7.0731,
+                                50.74672
+                            ],
+                            [
+                                7.07375,
+                                50.74601
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "start_time": "2023-08-24T09:00:00",
+                    "end_time": "2023-08-24T09:59:59",
+                    "agent_count": 427
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [
+                        [
+                            [
+                                7.07375,
+                                50.74601
+                            ],
+                            [
+                                7.07504,
+                                50.74601
+                            ],
+                            [
+                                7.07569,
+                                50.74672
+                            ],
+                            [
+                                7.07504,
+                                50.74743
+                            ],
+                            [
+                                7.07375,
+                                50.74743
+                            ],
+                            [
+                                7.0731,
+                                50.74672
+                            ],
+                            [
+                                7.07375,
+                                50.74601
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "start_time": "2023-08-24T07:00:00",
+                    "end_time": "2023-08-24T07:59:59",
+                    "agent_count": 422
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [
+                        [
+                            [
+                                7.07569,
+                                50.74672
+                            ],
+                            [
+                                7.07699,
+                                50.74672
+                            ],
+                            [
+                                7.07764,
+                                50.74743
+                            ],
+                            [
+                                7.07699,
+                                50.74814
+                            ],
+                            [
+                                7.07569,
+                                50.74814
+                            ],
+                            [
+                                7.07504,
+                                50.74743
+                            ],
+                            [
+                                7.07569,
+                                50.74672
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "start_time": "2023-08-24T08:00:00",
+                    "end_time": "2023-08-24T08:59:59",
+                    "agent_count": 421
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [
+                        [
+                            [
+                                7.07569,
+                                50.74672
+                            ],
+                            [
+                                7.07699,
+                                50.74672
+                            ],
+                            [
+                                7.07764,
+                                50.74743
+                            ],
+                            [
+                                7.07699,
+                                50.74814
+                            ],
+                            [
+                                7.07569,
+                                50.74814
+                            ],
+                            [
+                                7.07504,
+                                50.74743
+                            ],
+                            [
+                                7.07569,
+                                50.74672
+                            ]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "start_time": "2023-08-24T09:00:00",
+                    "end_time": "2023-08-24T09:59:59",
+                    "agent_count": 408
+                }
+            }
+        ]
+    }
 
 Step 6: Convert the returned GeoJSON result into a FeatureSet
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
